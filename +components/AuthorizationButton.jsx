@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Text, View } from "react-native";
+import { Button, Text, View, Platform } from "react-native";
 import {
   makeRedirectUri,
   ResponseType,
@@ -10,7 +10,7 @@ import Constants from "expo-constants";
 
 WebBrowser.maybeCompleteAuthSession();
 
-const useProxy = false;
+const useProxy = Platform.select({ web: false, default: true });
 
 const redirectUri = makeRedirectUri({
   useProxy,
