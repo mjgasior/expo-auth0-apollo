@@ -13,3 +13,10 @@ Set up the `app.json` file:
   }
 }
 ```
+
+# Packages:
+
+- `@apollo/client`
+- `expo-auth-session`
+- `graphql`
+- `jwt-decode`
