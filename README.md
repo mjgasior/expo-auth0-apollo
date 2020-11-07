@@ -20,3 +20,8 @@ Set up the `app.json` file:
 - `expo-auth-session`
 - `graphql`
 - `jwt-decode`
+
+# Based on:
+
+https://docs.expo.io/guides/authentication/#identity-4
+https://docs.expo.io/versions/latest/sdk/auth-session/#useauthrequest
