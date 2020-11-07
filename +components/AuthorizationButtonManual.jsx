@@ -17,7 +17,7 @@ export const AuthorizationButtonManual = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Button title="Login manual!" onPress={onPressHandler} />
-      {result && <Text>{JSON.stringify(result, null, 2)}</Text>}
+      {result && <Text>{JSON.stringify(result.idToken, null, 2)}</Text>}
     </View>
   );
 };

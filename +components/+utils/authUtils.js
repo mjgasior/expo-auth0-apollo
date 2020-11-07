@@ -7,7 +7,6 @@ export const handleLoginResponse = (response) => {
 
   const decodedJwtIdToken = JwtDecode(response.params.id_token);
   console.log(decodedJwtIdToken);
-  console.log(response.params);
 
   return {
     idToken: decodedJwtIdToken,
