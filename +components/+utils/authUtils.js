@@ -1,9 +1,18 @@
+import JwtDecode from "jwt-decode";
+
 export const handleLoginResponse = (response) => {
   if (response.error || response.type !== "success") {
     return;
   }
 
-  return response.params;
+  const decodedJwtIdToken = JwtDecode(response.params.id_token);
+  console.log(decodedJwtIdToken);
+  console.log(response.params);
+
+  return {
+    idToken: decodedJwtIdToken,
+    accessToken: response.params.access_token,
+  };
 };
 
 export const toQueryString = (params) =>
