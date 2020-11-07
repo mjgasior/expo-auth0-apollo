@@ -5,7 +5,7 @@ import { auth0Login } from "./+utils/auth0Login";
 
 WebBrowser.maybeCompleteAuthSession();
 
-export const AuthorizationButtonManual = () => {
+export const AuthorizationButton = () => {
   const [result, setResult] = useState();
 
   const onPressHandler = useCallback(async () => {
