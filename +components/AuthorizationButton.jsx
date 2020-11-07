@@ -1,18 +1,43 @@
-import React, { useCallback, useState } from "react";
-import { TouchableOpacity, Text } from "react-native";
-import { login } from "../Authorization";
+import * as React from "react";
+import { Button, Text, View } from "react-native";
+import {
+  makeRedirectUri,
+  ResponseType,
+  useAuthRequest,
+} from "expo-auth-session";
+import * as WebBrowser from "expo-web-browser";
+import Constants from "expo-constants";
+
+WebBrowser.maybeCompleteAuthSession();
+
+const useProxy = false;
+
+const redirectUri = makeRedirectUri({
+  useProxy,
+});
 
 export const AuthorizationButton = () => {
-  const [name, setName] = useState("");
-
-  const onPressHandler = useCallback(async () => {
-    const result = await login();
-    setName(result.idToken.name);
-  }, [setName]);
+  const [request, result, promptAsync] = useAuthRequest(
+    {
+      responseType: ResponseType.Token,
+      clientId: Constants.manifest.extra.clientId,
+      redirectUri,
+      scopes: ["openid", "profile", "email"],
+    },
+    {
+      authorizationEndpoint: `https://${Constants.manifest.extra.authDomain}/authorize`,
+      tokenEndpoint: `https://${Constants.manifest.extra.authDomain}/oauth/token`,
+    }
+  );
 
   return (
-    <TouchableOpacity onPress={onPressHandler}>
-      <Text>Log in!</Text>
-    </TouchableOpacity>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Button
+        title="Loginghg!"
+        disabled={!request}
+        onPress={() => promptAsync({ useProxy, returnUrl: redirectUri })}
+      />
+      {result && <Text>{JSON.stringify(result, null, 2)}</Text>}
+    </View>
   );
 };

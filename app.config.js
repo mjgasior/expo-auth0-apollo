@@ -7,6 +7,7 @@ export default ({ config }) => {
       version: "1.0.0",
       orientation: "portrait",
       icon: "./assets/icon.png",
+      scheme: "crackermobile",
       splash: {
         image: "./assets/splash.png",
         resizeMode: "contain",
