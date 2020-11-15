@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useMarkers } from "../+hooks/useMarkers";
+import { AuthorizationButton } from "./AuthorizationButton";
+import { AuthorizationButtonManual } from "./AuthorizationButtonManual";
 
 export const Markers = () => {
   const { data, loading, error } = useMarkers();
@@ -29,6 +31,8 @@ export const Markers = () => {
         data.markers.map((item) => (
           <Text key={item._id}>- {item.english.name}</Text>
         ))}
+      <AuthorizationButton />
+      <AuthorizationButtonManual />
       <StatusBar style="auto" />
     </View>
   );
